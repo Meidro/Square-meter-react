@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import {Route, Routes} from 'react-router-dom'
+import './App.css'
+import {Footer} from './components/Footer'
+import {Header} from './components/Header'
+import {Logo} from './components/Logo'
+import {Bids} from './pages/Bids'
+import {Favourites} from './pages/Favourites'
+import {Main} from './pages/Main'
+import {NotFound} from './pages/NotFound'
+import {Object} from './pages/Object'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    console.log('render App')
+    return (
+        <div className='sticky-footer'>
+            <div className='content-wrapper'>
+                <Header />
+                <Logo />
+                <Routes>
+                    <Route path='/' element={<Main />} />
+                    <Route path='/object' element={<Object />} />
+                    <Route path='/bids' element={<Bids />} />
+                    <Route path='/favourites' element={<Favourites />} />
+                    <Route path='*' element={<NotFound />} />
+                </Routes>
+            </div>
+            <Footer />
+        </div>
+    )
 }
 
-export default App;
+export default App

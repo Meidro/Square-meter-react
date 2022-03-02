@@ -7,7 +7,6 @@ const initState = {
 export const objectsReducer = (state = initState, action) => {
     switch (action.type) {
         case SET_OBJECTS:
-            console.log('запрос setObjects')
             return {
                 ...state,
                 objects: action.objects,

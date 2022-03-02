@@ -157,13 +157,15 @@ body {
     display: flex;
 }
 .rooms__checkbox {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 0;
-    height: 0;
+    /* -webkit-appearance: none;
+    appearance: none; */
+    width: 1px;
+    height: 1px;
     position: absolute;
-    left: -1000px;
-    top: -1000px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    /* left: -1000px;
+    top: -1000px; */
 }
 .rooms__checkbox:checked + .rooms__btn {
     background-color: #e51414;
@@ -469,13 +471,11 @@ a.card:hover {
     line-height: 40px;
 }
 .view-options__radio {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 0;
-    height: 0;
+    width: 1px;
+    height: 1px;
     position: absolute;
-    left: -1000px;
-    top: -1000px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
 }
 .view-options__radio:checked + .view-options__type-item {
     color: #000000;
@@ -485,7 +485,7 @@ a.card:hover {
     color: #cfcfcf;
     font-size: 20px;
     text-decoration: none;
-    transition: 0.4s color ease;
+    transition: 0.2s color ease;
     cursor: pointer;
 }
 .view-options__type-item:hover {

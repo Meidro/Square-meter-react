@@ -1,6 +1,4 @@
-export const Filter = ({params, register, handleSubmit, onSubmit, objectsCount, reset, getTextBtnCorrect}) => {
-    console.log('render Filter')
-
+export const Filter = ({params, register, handleSubmit, onSubmit, objectsCount, onReset, getTextBtnCorrect}) => {
     return (
         <form method='GET' onSubmit={handleSubmit(onSubmit)} className='container p-0'>
             <div className='heading-1'>Выбор квартир:</div>
@@ -102,13 +100,7 @@ export const Filter = ({params, register, handleSubmit, onSubmit, objectsCount, 
                 <button disabled={!objectsCount} className='filter__show'>
                     {getTextBtnCorrect(objectsCount)}
                 </button>
-                <button
-                    className='filter__reset'
-                    onClick={(e) => {
-                        e.preventDefault()
-                        reset()
-                    }}
-                >
+                <button className='filter__reset' onClick={onReset}>
                     Сбросить фильтр
                 </button>
             </div>

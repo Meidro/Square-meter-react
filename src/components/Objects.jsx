@@ -1,5 +1,4 @@
 export const Objects = ({objects, splitByThree}) => {
-    console.log('render Objects')
     return (
         <div className='cards-wrapper'>
             <div className='container p-0'>

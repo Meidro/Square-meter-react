@@ -1,5 +1,4 @@
 export const Preloader = () => {
-    console.log('Preloader')
     return (
         <div className='container'>
             <div className='preloader-holder'>

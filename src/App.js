@@ -10,7 +10,6 @@ import {NotFound} from './pages/NotFound'
 import {Object} from './pages/Object'
 
 const App = () => {
-    console.log('render App')
     return (
         <div className='sticky-footer'>
             <div className='content-wrapper'>

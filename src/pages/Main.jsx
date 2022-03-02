@@ -13,22 +13,24 @@ import {useEffect} from 'react'
 import {Options} from '../components/Options'
 
 export const Main = () => {
-    console.log('render Main')
-
     const dispatch = useDispatch()
     const params = useSelector((state) => state.filter.params)
     const filterObjects = useSelector((state) => state.filter.filterObjects)
     const objects = useSelector((state) => state.list.objects)
     const objectsCount = filterObjects?.length
     const {register, handleSubmit, watch, reset} = useForm()
-    const onSubmit = () => {
-        dispatch(setObjects(filterObjects))
+
+    const onSubmit = () => dispatch(setObjects(filterObjects))
+
+    const onReset = (e) => {
+        e.preventDefault()
+        reset()
     }
 
     const runObjectsQuery = async (value) => {
         const objectsArray = await API.getObjects(getParamsString(value))
         dispatch(setFilterObjects(objectsArray))
-        !value && dispatch(setObjects(objectsArray))
+        if (!value || !Object.keys(value).length) dispatch(setObjects(objectsArray))
     }
 
     useEffect(async () => {
@@ -38,7 +40,6 @@ export const Main = () => {
         runObjectsQuery()
 
         watch(async (value) => {
-            console.log('ИЗМЕНЕНИЯ ФОРМЫ')
             runObjectsQuery(value)
         })
     }, [])
@@ -53,7 +54,7 @@ export const Main = () => {
                 handleSubmit={handleSubmit}
                 onSubmit={onSubmit}
                 objectsCount={objectsCount}
-                reset={reset}
+                onReset={onReset}
                 getTextBtnCorrect={getTextBtnCorrect}
             />
             <Options />

@@ -9,13 +9,11 @@ const initState = {
 export const filterReducer = (state = initState, action) => {
     switch (action.type) {
         case SET_FILTER_PARAMS:
-            console.log('запрос setParams')
             return {
                 ...state,
                 params: action.params,
             }
         case SET_FILTER_OBJECTS:
-            console.log('запрос setFilterObjects')
             return {
                 ...state,
                 filterObjects: action.objects,

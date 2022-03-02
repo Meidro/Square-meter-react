@@ -3,7 +3,7 @@ export const getParamsString = (data) => {
         let paramsString = '?'
 
         for (let key in data) {
-            if (data[key] !== 'all' && data[key] && data[key].length && data[key] !== '') {
+            if (data[key] !== 'all' && data[key] && data[key].length) {
                 paramsString += `${key}=${data[key]}&`
             }
         }

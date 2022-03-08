@@ -7,7 +7,7 @@ import {Bids} from './pages/Bids'
 import {Favourites} from './pages/Favourites'
 import {Main} from './pages/Main'
 import {NotFound} from './pages/NotFound'
-import {Object} from './pages/Object'
+import {SingleObject} from './pages/SingleObject'
 
 const App = () => {
     return (
@@ -17,9 +17,10 @@ const App = () => {
                 <Logo />
                 <Routes>
                     <Route path='/' element={<Main />} />
-                    <Route path='/object' element={<Object />} />
+                    <Route path='/object/:objId' element={<SingleObject />} />
                     <Route path='/bids' element={<Bids />} />
                     <Route path='/favourites' element={<Favourites />} />
+                    <Route path='/favourites/object/:objId' element={<SingleObject />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
             </div>

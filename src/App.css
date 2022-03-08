@@ -477,9 +477,7 @@ a.card:hover {
     overflow: hidden;
     clip: rect(0 0 0 0);
 }
-.view-options__radio:checked + .view-options__type-item {
-    color: #000000;
-}
+
 .view-options__type-item {
     margin-right: 12px;
     color: #cfcfcf;
@@ -487,6 +485,9 @@ a.card:hover {
     text-decoration: none;
     transition: 0.2s color ease;
     cursor: pointer;
+}
+.view-options__radio:checked + .view-options__type-item {
+    color: #000000;
 }
 .view-options__type-item:hover {
     color: #696969;
@@ -611,6 +612,8 @@ a.panel.panel--no-hover:hover {
 }
 .panel__favourite-btn {
     border: none;
+    width: 24px;
+    margin: 0 auto;
     background-color: transparent;
     color: #ececec;
     font-size: 24px;
@@ -626,7 +629,7 @@ a.panel.panel--no-hover:hover {
     opacity: 0.8;
 }
 .panel__bidname {
-    padding-left: 20px;
+    padding-left: 50px;
     width: 400px;
     text-align: left;
 }
@@ -635,7 +638,7 @@ a.panel.panel--no-hover:hover {
 }
 .object {
     margin-top: 30px;
-    margin-bottom: 90px;
+    margin-bottom: 50px;
     height: auto;
     box-shadow: 4px 7px 35px rgba(198, 211, 214, 0.3);
     background-color: #ffffff;
@@ -954,7 +957,7 @@ a.panel.panel--no-hover:hover {
     text-decoration: none;
 }
 .footer {
-    margin-top: 80px;
+    margin-top: 40px;
     background-color: #000000;
     padding: 20px 0;
     text-align: center;
@@ -980,7 +983,8 @@ a.panel.panel--no-hover:hover {
     background-color: rgba(70, 131, 180, 0.5);
 }
 .modal {
-    position: absolute;
+    /* position: absolute; */
+    position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -1041,6 +1045,9 @@ a.panel.panel--no-hover:hover {
     text-align: center;
     cursor: pointer;
     transition: 0.1s background-color ease-in;
+}
+.modal__submit:disabled {
+    background-color: #f05858;
 }
 .modal__submit:hover {
     background-color: #f05858;

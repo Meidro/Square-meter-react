@@ -1,16 +1,43 @@
-export const Objects = ({objects, splitByThree}) => {
+import {useDispatch, useSelector} from 'react-redux'
+import {NavLink} from 'react-router-dom'
+import {addToFavouritesAC, removeFromFavouritesAC} from '../redux/favouritesReducer'
+
+export const ObjectsTable = ({objects, splitByThree, isList}) => {
+    const dispatch = useDispatch()
+    const favourites = useSelector((state) => state.favourites)
+
+    const addToFavs = (id, e) => {
+        e.preventDefault()
+        dispatch(addToFavouritesAC(id))
+    }
+
+    const removeFromFavs = (id, e) => {
+        e.preventDefault()
+        dispatch(removeFromFavouritesAC(id))
+    }
+
+    if (isList) return null
     return (
         <div className='cards-wrapper'>
             <div className='container p-0'>
                 <div className='row'>
                     {objects.map((object) => (
                         <article key={object.id} className='col-md-4'>
-                            <a href='object.html' className='card'>
+                            <NavLink to={`object/${object.id}`} className='card'>
                                 <div className='card__header'>
                                     <div className='card__title'>ЖК {object.complex_name}</div>
-                                    <div className='card__like'>
-                                        <i className='fas fa-heart'></i>
-                                    </div>
+                                    {favourites.favsId.includes(object.id) ? (
+                                        <div
+                                            onClick={(e) => removeFromFavs(object.id, e)}
+                                            className='card__like card__like--active'
+                                        >
+                                            <i className='fas fa-heart'></i>
+                                        </div>
+                                    ) : (
+                                        <div onClick={(e) => addToFavs(object.id, e)} className='card__like'>
+                                            <i className='fas fa-heart'></i>
+                                        </div>
+                                    )}
                                 </div>
                                 <div className='card__img'>
                                     <img src={object.image} alt='План квартиры' />
@@ -40,7 +67,7 @@ export const Objects = ({objects, splitByThree}) => {
                                         Этаж {object.floor} из {object.floors_total}
                                     </div>
                                 </div>
-                            </a>
+                            </NavLink>
                         </article>
                     ))}
                 </div>

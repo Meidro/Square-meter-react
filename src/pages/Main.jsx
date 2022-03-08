@@ -7,20 +7,20 @@ import {setObjects} from '../redux/objectsReducer'
 import {getParamsString} from '../utils/getParamsString'
 import {getTextBtnCorrect} from '../utils/getTextBtnCorrect'
 import {API} from '../api/api'
-import {Objects} from '../components/Objects'
 import {splitByThree} from '../utils/splitByThree'
 import {useEffect} from 'react'
 import {Options} from '../components/Options'
+import {ObjectsList} from '../components/ObjectsList'
+import {ObjectsTable} from '../components/ObjectsTable'
 
 export const Main = () => {
     const dispatch = useDispatch()
-    const params = useSelector((state) => state.filter.params)
-    const filterObjects = useSelector((state) => state.filter.filterObjects)
-    const objects = useSelector((state) => state.list.objects)
-    const objectsCount = filterObjects?.length
+    const filter = useSelector((state) => state.filter)
+    const list = useSelector((state) => state.list)
+    const objectsCount = filter.filterObjects?.length
     const {register, handleSubmit, watch, reset} = useForm()
 
-    const onSubmit = () => dispatch(setObjects(filterObjects))
+    const onSubmit = () => dispatch(setObjects(filter.filterObjects))
 
     const onReset = (e) => {
         e.preventDefault()
@@ -44,12 +44,12 @@ export const Main = () => {
         })
     }, [])
 
-    if (!params) return <Preloader />
+    if (!filter.params) return <Preloader />
 
     return (
         <>
             <Filter
-                params={params}
+                params={filter.params}
                 register={register}
                 handleSubmit={handleSubmit}
                 onSubmit={onSubmit}
@@ -58,7 +58,8 @@ export const Main = () => {
                 getTextBtnCorrect={getTextBtnCorrect}
             />
             <Options />
-            <Objects splitByThree={splitByThree} objects={objects} />
+            <ObjectsTable splitByThree={splitByThree} objects={list.objects} isList={list.isList} />
+            <ObjectsList splitByThree={splitByThree} objects={list.objects} isList={list.isList} />
         </>
     )
 }
